@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Test | Hexo</title>
+  <title>RxJavaTest1 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,19 +15,19 @@
     <meta name="keywords" content="android,Android,日常,安卓" />
   
 
-  <meta name="description" content="MD测试  111111111111111111111111  A B C D   12Palette.Swatch  swatch=palette.getDominantSwatch() ;int color = swatch.getRgb();    变粗变斜删除变酷炫  链接测试测试">
+  <meta name="description" content="今天看了一天的RxJava1.1 心里烦的不行，感觉思路差不多，但是有些标签好像不一样，所以今天就复习一下RxJava.   开始Observable 被观察者Observer 观察者subscribe 订阅 1observable.subscribe(observer);  语句拓展 Observer和Subscriber几乎一样，后者多了onStart()(事件发送之前的准备工作)和unsu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Test">
-<meta property="og:url" content="http://yoursite.com/2018/06/05/Test/index.html">
+<meta property="og:title" content="RxJavaTest1">
+<meta property="og:url" content="http://yoursite.com/2018/06/06/RxJavaTest1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="MD测试  111111111111111111111111  A B C D   12Palette.Swatch  swatch=palette.getDominantSwatch() ;int color = swatch.getRgb();    变粗变斜删除变酷炫  链接测试测试">
+<meta property="og:description" content="今天看了一天的RxJava1.1 心里烦的不行，感觉思路差不多，但是有些标签好像不一样，所以今天就复习一下RxJava.   开始Observable 被观察者Observer 观察者subscribe 订阅 1observable.subscribe(observer);  语句拓展 Observer和Subscriber几乎一样，后者多了onStart()(事件发送之前的准备工作)和unsu">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6777107-7848ac2b99d3b7a7.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-05T14:58:35.900Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6777107-70582b53d675ee0f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-06T13:21:57.934Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Test">
-<meta name="twitter:description" content="MD测试  111111111111111111111111  A B C D   12Palette.Swatch  swatch=palette.getDominantSwatch() ;int color = swatch.getRgb();    变粗变斜删除变酷炫  链接测试测试">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/6777107-7848ac2b99d3b7a7.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="RxJavaTest1">
+<meta name="twitter:description" content="今天看了一天的RxJava1.1 心里烦的不行，感觉思路差不多，但是有些标签好像不一样，所以今天就复习一下RxJava.   开始Observable 被观察者Observer 观察者subscribe 订阅 1observable.subscribe(observer);  语句拓展 Observer和Subscriber几乎一样，后者多了onStart()(事件发送之前的准备工作)和unsu">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/6777107-70582b53d675ee0f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
   
 
@@ -186,20 +186,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1111"><span class="toc-text">1111</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1111-1"><span class="toc-text">1111</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1111-2"><span class="toc-text">1111</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1111-3"><span class="toc-text">1111</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1111-4"><span class="toc-text">1111</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1111-5"><span class="toc-text">1111</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语句拓展"><span class="toc-text">语句拓展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定事件产生线程"><span class="toc-text">指定事件产生线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定事件消费线程"><span class="toc-text">指定事件消费线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最好用的地方–变换"><span class="toc-text">最好用的地方–变换</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-Test" class="article article-type-post" itemprop="blogPost">
+   <article id="post-RxJavaTest1" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Test</h1>
+    <h1 class="post-title">RxJavaTest1</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2018.06.05</span>
+        <span>2018.06.06</span>
       </span>
 
       
@@ -215,7 +215,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://lilittlexia.github.io//2018/06/05/Test/#disqus_thread"></a>
+          <a href="https://lilittlexia.github.io//2018/06/06/RxJavaTest1/#disqus_thread"></a>
         </span>
       
 
@@ -233,23 +233,28 @@
   <div class="article-content">
     
       <blockquote>
-<p>MD测试</p>
+<p>今天看了一天的RxJava1.1 心里烦的不行，感觉思路差不多，但是有些标签好像不一样，所以今天就复习一下RxJava.</p>
 </blockquote>
-<h1 id="1111"><a href="#1111" class="headerlink" title="1111"></a>1111</h1><h2 id="1111-1"><a href="#1111-1" class="headerlink" title="1111"></a>1111</h2><h3 id="1111-2"><a href="#1111-2" class="headerlink" title="1111"></a>1111</h3><h4 id="1111-3"><a href="#1111-3" class="headerlink" title="1111"></a>1111</h4><h5 id="1111-4"><a href="#1111-4" class="headerlink" title="1111"></a>1111</h5><h6 id="1111-5"><a href="#1111-5" class="headerlink" title="1111"></a>1111</h6><hr>
-<ul>
-<li>A</li>
-<li>B</li>
-<li>C</li>
-<li>D</li>
+<hr>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p><code>Observable</code> 被观察者<br><code>Observer</code> 观察者<br><code>subscribe</code> 订阅</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">observable.subscribe(observer);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="语句拓展"><a href="#语句拓展" class="headerlink" title="语句拓展"></a>语句拓展</h3><ul>
+<li><code>Observer</code>和<code>Subscriber</code>几乎一样，后者多了<code>onStart()</code>(事件发送之前的准备工作)和<code>unsubscribe()</code>(停止接受事件)</li>
+<li>简化版Observable方法，<code>Observable,just();</code>, <code>Observable.from</code></li>
 </ul>
 <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Palette.Swatch  swatch=palette.getDominantSwatch() ;</span><br><span class="line">int color = swatch.getRgb();</span><br></pre></td></tr></table></figure>
+<h3 id="指定事件产生线程"><a href="#指定事件产生线程" class="headerlink" title="指定事件产生线程"></a>指定事件产生线程</h3><ul>
+<li><code>.subscribeOn(Schedulers.io())</code> IO线程 文件读写、数据库读写、网络请求啥的</li>
+<li><code>.subscribeOn(Schedulers.immediate())</code> 默认当前线程</li>
+<li><code>.subscribeOn(Schedulers.newThread())</code> 新线程</li>
+<li><code>.subscribeOn(Schedulers.computation())</code> CPU密集型计算使用线程<h3 id="指定事件消费线程"><a href="#指定事件消费线程" class="headerlink" title="指定事件消费线程"></a>指定事件消费线程</h3><code>observeOn(AndroidScheculers.mainThread())</code>一个基本OK<br>常用套路就是<code>subscribeOn(Scheduler.io())</code>和<code>observeOn(AndroidSchedulers.mainThread())</code><br><code>observeOn</code>方法可以多次调用，随意转换。<br><code>subscribeOn</code>不行，第一个起作用<br><code>.doOnSubscribe()</code>准备工作指定线程(和subscribeOn一个线程)</li>
+</ul>
 <hr>
-<p><img src="http://upload-images.jianshu.io/upload_images/6777107-7848ac2b99d3b7a7.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="少主保佑"></p>
+<h3 id="最好用的地方–变换"><a href="#最好用的地方–变换" class="headerlink" title="最好用的地方–变换"></a>最好用的地方–变换</h3><p><code>.map()</code> 在方法里把A处理成B<br><code>.flatMap()</code> 嵌套异步请求，比如网络请求套网络请求</p>
 <hr>
-<p><strong>变粗</strong><br><em>变斜</em><br><del>删除</del><br><code>变酷炫</code></p>
-<hr>
-<p><a href="http://baidu.com" target="_blank" rel="noopener">链接测试测试</a></p>
+<p>今天先到这，想到下午看了一个蜜汁代码，研究了一下是传说中的RxBus，和EventBus差不多。嗯，就是都是用着方便，别人想理解代码逻辑基本要找好久。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6777107-70582b53d675ee0f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="少主之开门见山"></p>
 
     
   </div>
@@ -287,10 +292,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/05/14/hello-world/">
+    <a class="show pull-left" href="/2018/06/05/Test/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/06/06/RxJavaTest1/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -415,7 +420,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2018/06/05/Test/';
+    var disqus_url = 'http://yoursite.com/2018/06/06/RxJavaTest1/';
     
     (function(){
       var dsq = document.createElement('script');
