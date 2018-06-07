@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>RxJavaTest1 | Hexo</title>
+  <title>RxJava循环请求网络直到条件达成 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,19 +15,19 @@
     <meta name="keywords" content="android,Android,日常,安卓" />
   
 
-  <meta name="description" content="今天看了一天的RxJava1.1 心里烦的不行，感觉思路差不多，但是有些标签好像不一样，所以今天就复习一下RxJava.   开始Observable 被观察者Observer 观察者subscribe 订阅 1observable.subscribe(observer);  语句拓展 Observer和Subscriber几乎一样，后者多了onStart()(事件发送之前的准备工作)和unsu">
+  <meta name="description" content="今日上班领了一个新任务，循环进行网络请求，直到返回的一个参数符合标准。  一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了.interval(第一次执行时间,执行间隔时间,实践单位) 美滋滋，几分钟搞定。  结果我没问清楚，要停的，改之。本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1.1版本没有onSub">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RxJavaTest1">
-<meta property="og:url" content="http://yoursite.com/2018/06/06/RxJavaTest1/index.html">
+<meta property="og:title" content="RxJava循环请求网络直到条件达成">
+<meta property="og:url" content="http://yoursite.com/2018/06/07/RxJava循环请求网络直到条件达成/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="今天看了一天的RxJava1.1 心里烦的不行，感觉思路差不多，但是有些标签好像不一样，所以今天就复习一下RxJava.   开始Observable 被观察者Observer 观察者subscribe 订阅 1observable.subscribe(observer);  语句拓展 Observer和Subscriber几乎一样，后者多了onStart()(事件发送之前的准备工作)和unsu">
+<meta property="og:description" content="今日上班领了一个新任务，循环进行网络请求，直到返回的一个参数符合标准。  一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了.interval(第一次执行时间,执行间隔时间,实践单位) 美滋滋，几分钟搞定。  结果我没问清楚，要停的，改之。本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1.1版本没有onSub">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6777107-70582b53d675ee0f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-06T13:21:57.934Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6777107-6cc3cd92d673ba37.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50">
+<meta property="og:updated_time" content="2018-06-07T13:37:46.473Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RxJavaTest1">
-<meta name="twitter:description" content="今天看了一天的RxJava1.1 心里烦的不行，感觉思路差不多，但是有些标签好像不一样，所以今天就复习一下RxJava.   开始Observable 被观察者Observer 观察者subscribe 订阅 1observable.subscribe(observer);  语句拓展 Observer和Subscriber几乎一样，后者多了onStart()(事件发送之前的准备工作)和unsu">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/6777107-70582b53d675ee0f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="RxJava循环请求网络直到条件达成">
+<meta name="twitter:description" content="今日上班领了一个新任务，循环进行网络请求，直到返回的一个参数符合标准。  一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了.interval(第一次执行时间,执行间隔时间,实践单位) 美滋滋，几分钟搞定。  结果我没问清楚，要停的，改之。本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1.1版本没有onSub">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6777107-6cc3cd92d673ba37.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50">
 
   
 
@@ -186,20 +186,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语句拓展"><span class="toc-text">语句拓展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定事件产生线程"><span class="toc-text">指定事件产生线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定事件消费线程"><span class="toc-text">指定事件消费线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最好用的地方–变换"><span class="toc-text">最好用的地方–变换</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了"><span class="toc-text">一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果我没问清楚，要停的，改之。"><span class="toc-text">结果我没问清楚，要停的，改之。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1-1版本没有onSubscribe，所以也没考证对错。"><span class="toc-text">本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1.1版本没有onSubscribe，所以也没考证对错。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#换方法"><span class="toc-text">换方法</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-RxJavaTest1" class="article article-type-post" itemprop="blogPost">
+   <article id="post-RxJava循环请求网络直到条件达成" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">RxJavaTest1</h1>
+    <h1 class="post-title">RxJava循环请求网络直到条件达成</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2018.06.06</span>
+        <span>2018.06.07</span>
       </span>
 
       
@@ -215,7 +215,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://lilittlexia.github.io//2018/06/06/RxJavaTest1/#disqus_thread"></a>
+          <a href="https://lilittlexia.github.io//2018/06/07/RxJava循环请求网络直到条件达成/#disqus_thread"></a>
         </span>
       
 
@@ -233,28 +233,16 @@
   <div class="article-content">
     
       <blockquote>
-<p>今天看了一天的RxJava1.1 心里烦的不行，感觉思路差不多，但是有些标签好像不一样，所以今天就复习一下RxJava.</p>
+<p>今日上班领了一个新任务，循环进行网络请求，直到返回的一个参数符合标准。</p>
 </blockquote>
+<h1 id="一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了"><a href="#一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了" class="headerlink" title="一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了"></a>一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了</h1><p><code>.interval(第一次执行时间,执行间隔时间,实践单位)</code></p>
+<p>美滋滋，几分钟搞定。</p>
 <hr>
-<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p><code>Observable</code> 被观察者<br><code>Observer</code> 观察者<br><code>subscribe</code> 订阅</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">observable.subscribe(observer);</span><br></pre></td></tr></table></figure>
+<h1 id="结果我没问清楚，要停的，改之。"><a href="#结果我没问清楚，要停的，改之。" class="headerlink" title="结果我没问清楚，要停的，改之。"></a>结果我没问清楚，要停的，改之。</h1><h1 id="本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1-1版本没有onSubscribe，所以也没考证对错。"><a href="#本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1-1版本没有onSubscribe，所以也没考证对错。" class="headerlink" title="本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1.1版本没有onSubscribe，所以也没考证对错。"></a>本来记得<code>Observer</code>有一个<code>onSubscribe</code>的方法里面可以直接拿到<code>Disposable</code>就可以停止执行，没想到项目用的1.1版本没有<code>onSubscribe</code>，所以也没考证对错。</h1><hr>
+<h1 id="换方法"><a href="#换方法" class="headerlink" title="换方法"></a>换方法</h1><p>伪代码,网络返回实体类People.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int a = 0;</span><br><span class="line"></span><br><span class="line">Observable.repeatWhen(</span><br><span class="line">	......return objObservable.flatMap(</span><br><span class="line">	......if(a==1)&#123;</span><br><span class="line">			return Observable.error(new Throwable(&quot;STOP&quot;));</span><br><span class="line">	    &#125;</span><br><span class="line">         return Observable.just(1).delay(2000, TimeUnit.MILLISECONDS);                         </span><br><span class="line">          .....                         </span><br><span class="line">                .subscribe(new Observer&lt;People&gt;() &#123;</span><br><span class="line">                                   </span><br><span class="line">                     @Override</span><br><span class="line">                     public void onNext(People people) &#123;</span><br><span class="line">                        if(people.getXXXX())&#123;</span><br><span class="line">							a==1;</span><br><span class="line">						&#125;</span><br><span class="line">                     &#125;</span><br><span class="line"></span><br><span class="line">                     @Override</span><br><span class="line">                     public void onError(Throwable e) &#123;</span><br><span class="line">                          Log.d(TAG,  e.toString());                                          </span><br><span class="line">                    &#125;</span><br><span class="line">		.....</span><br></pre></td></tr></table></figure></p>
+<p>不知道为啥a不能是Boolean，否则会报转换异常。原理了解了下，今天有些累，电脑studio坏了，代码也撸不出来，不打字了，有缘再见，无缘百度。</p>
 <hr>
-<h3 id="语句拓展"><a href="#语句拓展" class="headerlink" title="语句拓展"></a>语句拓展</h3><ul>
-<li><code>Observer</code>和<code>Subscriber</code>几乎一样，后者多了<code>onStart()</code>(事件发送之前的准备工作)和<code>unsubscribe()</code>(停止接受事件)</li>
-<li>简化版Observable方法，<code>Observable,just();</code>, <code>Observable.from</code></li>
-</ul>
-<hr>
-<h3 id="指定事件产生线程"><a href="#指定事件产生线程" class="headerlink" title="指定事件产生线程"></a>指定事件产生线程</h3><ul>
-<li><code>.subscribeOn(Schedulers.io())</code> IO线程 文件读写、数据库读写、网络请求啥的</li>
-<li><code>.subscribeOn(Schedulers.immediate())</code> 默认当前线程</li>
-<li><code>.subscribeOn(Schedulers.newThread())</code> 新线程</li>
-<li><code>.subscribeOn(Schedulers.computation())</code> CPU密集型计算使用线程<h3 id="指定事件消费线程"><a href="#指定事件消费线程" class="headerlink" title="指定事件消费线程"></a>指定事件消费线程</h3><code>observeOn(AndroidScheculers.mainThread())</code>一个基本OK<br>常用套路就是<code>subscribeOn(Scheduler.io())</code>和<code>observeOn(AndroidSchedulers.mainThread())</code><br><code>observeOn</code>方法可以多次调用，随意转换。<br><code>subscribeOn</code>不行，第一个起作用<br><code>.doOnSubscribe()</code>准备工作指定线程(和subscribeOn一个线程)</li>
-</ul>
-<hr>
-<h3 id="最好用的地方–变换"><a href="#最好用的地方–变换" class="headerlink" title="最好用的地方–变换"></a>最好用的地方–变换</h3><p><code>.map()</code> 在方法里把A处理成B<br><code>.flatMap()</code> 嵌套异步请求，比如网络请求套网络请求</p>
-<hr>
-<p>今天先到这，想到下午看了一个蜜汁代码，研究了一下是传说中的RxBus，和EventBus差不多。嗯，就是都是用着方便，别人想理解代码逻辑基本要找好久。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/6777107-70582b53d675ee0f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="少主之开门见山"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6777107-6cc3cd92d673ba37.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50" alt="ZZZ"></p>
 
     
   </div>
@@ -292,10 +280,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/06/05/Test/">
+    <a class="show pull-left" href="/2018/06/06/RxJavaTest1/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/06/07/RxJava循环请求网络直到条件达成/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -420,7 +408,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2018/06/06/RxJavaTest1/';
+    var disqus_url = 'http://yoursite.com/2018/06/07/RxJava循环请求网络直到条件达成/';
     
     (function(){
       var dsq = document.createElement('script');
