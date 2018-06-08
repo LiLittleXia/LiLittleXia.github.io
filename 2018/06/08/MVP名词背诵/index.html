@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>RxJava循环请求网络直到条件达成 | Hexo</title>
+  <title>MVP名词背诵 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,19 +15,17 @@
     <meta name="keywords" content="android,Android,日常,安卓" />
   
 
-  <meta name="description" content="今日上班领了一个新任务，循环进行网络请求，直到返回的一个参数符合标准。  一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了 .interval(第一次执行时间,执行间隔时间,实践单位) 美滋滋，几分钟搞定。  结果我没问清楚，要停的，改之。本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1.1版本没有onSu">
+  <meta name="description" content="因为最近发生的一些事让我明白，有些东西只是会用是不行的，还要会背……  M-Model-[ˈmɒdl] 数据相关层V-View  视图层P-Presenter-[prɪˈzentə(r)] 处理业务逻辑MVP的好处是什么？解耦、结构清晰、可复用、拓展性高、方便单元测试、据说还可以避免内存泄漏  没了，话说回来，想不通为什么公司的代码乍一看是MVP，其实是在做多余的工作但是没人提。View层不就是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RxJava循环请求网络直到条件达成">
-<meta property="og:url" content="http://yoursite.com/2018/06/07/RxJava循环请求网络直到条件达成/index.html">
+<meta property="og:title" content="MVP名词背诵">
+<meta property="og:url" content="http://yoursite.com/2018/06/08/MVP名词背诵/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="今日上班领了一个新任务，循环进行网络请求，直到返回的一个参数符合标准。  一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了 .interval(第一次执行时间,执行间隔时间,实践单位) 美滋滋，几分钟搞定。  结果我没问清楚，要停的，改之。本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1.1版本没有onSu">
+<meta property="og:description" content="因为最近发生的一些事让我明白，有些东西只是会用是不行的，还要会背……  M-Model-[ˈmɒdl] 数据相关层V-View  视图层P-Presenter-[prɪˈzentə(r)] 处理业务逻辑MVP的好处是什么？解耦、结构清晰、可复用、拓展性高、方便单元测试、据说还可以避免内存泄漏  没了，话说回来，想不通为什么公司的代码乍一看是MVP，其实是在做多余的工作但是没人提。View层不就是">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6777107-6cc3cd92d673ba37.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50">
-<meta property="og:updated_time" content="2018-06-07T13:41:01.994Z">
+<meta property="og:updated_time" content="2018-06-08T12:18:12.654Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RxJava循环请求网络直到条件达成">
-<meta name="twitter:description" content="今日上班领了一个新任务，循环进行网络请求，直到返回的一个参数符合标准。  一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了 .interval(第一次执行时间,执行间隔时间,实践单位) 美滋滋，几分钟搞定。  结果我没问清楚，要停的，改之。本来记得Observer有一个onSubscribe的方法里面可以直接拿到Disposable就可以停止执行，没想到项目用的1.1版本没有onSu">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6777107-6cc3cd92d673ba37.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50">
+<meta name="twitter:title" content="MVP名词背诵">
+<meta name="twitter:description" content="因为最近发生的一些事让我明白，有些东西只是会用是不行的，还要会背……  M-Model-[ˈmɒdl] 数据相关层V-View  视图层P-Presenter-[prɪˈzentə(r)] 处理业务逻辑MVP的好处是什么？解耦、结构清晰、可复用、拓展性高、方便单元测试、据说还可以避免内存泄漏  没了，话说回来，想不通为什么公司的代码乍一看是MVP，其实是在做多余的工作但是没人提。View层不就是">
 
   
 
@@ -184,17 +182,22 @@
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#M-Model-ˈmɒdl-数据相关层"><span class="toc-text">M-Model-[ˈmɒdl] 数据相关层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#V-View-视图层"><span class="toc-text">V-View  视图层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#P-Presenter-prɪˈzentə-r-处理业务逻辑"><span class="toc-text">P-Presenter-[prɪˈzentə(r)] 处理业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MVP的好处是什么？"><span class="toc-text">MVP的好处是什么？</span></a></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
-   <article id="post-RxJava循环请求网络直到条件达成" class="article article-type-post" itemprop="blogPost">
+   <article id="post-MVP名词背诵" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">RxJava循环请求网络直到条件达成</h1>
+    <h1 class="post-title">MVP名词背诵</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2018.06.07</span>
+        <span>2018.06.08</span>
       </span>
 
       
@@ -210,7 +213,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://lilittlexia.github.io//2018/06/07/RxJava循环请求网络直到条件达成/#disqus_thread"></a>
+          <a href="https://lilittlexia.github.io//2018/06/08/MVP名词背诵/#disqus_thread"></a>
         </span>
       
 
@@ -228,18 +231,11 @@
   <div class="article-content">
     
       <blockquote>
-<p>今日上班领了一个新任务，循环进行网络请求，直到返回的一个参数符合标准。</p>
+<p>因为最近发生的一些事让我明白，有些东西只是会用是不行的，还要会背……</p>
 </blockquote>
-<p>一开始没和我说明白，以为就是一直无线请求网络就好了，所以用了</p>
-<p><code>.interval(第一次执行时间,执行间隔时间,实践单位)</code></p>
-<p>美滋滋，几分钟搞定。</p>
+<h1 id="M-Model-ˈmɒdl-数据相关层"><a href="#M-Model-ˈmɒdl-数据相关层" class="headerlink" title="M-Model-[ˈmɒdl] 数据相关层"></a>M-Model-[ˈmɒdl] 数据相关层</h1><h1 id="V-View-视图层"><a href="#V-View-视图层" class="headerlink" title="V-View  视图层"></a>V-View  视图层</h1><h1 id="P-Presenter-prɪˈzentə-r-处理业务逻辑"><a href="#P-Presenter-prɪˈzentə-r-处理业务逻辑" class="headerlink" title="P-Presenter-[prɪˈzentə(r)] 处理业务逻辑"></a>P-Presenter-[prɪˈzentə(r)] 处理业务逻辑</h1><h1 id="MVP的好处是什么？"><a href="#MVP的好处是什么？" class="headerlink" title="MVP的好处是什么？"></a>MVP的好处是什么？</h1><p>解耦、结构清晰、可复用、拓展性高、方便单元测试、据说还可以避免内存泄漏</p>
 <hr>
-<p>结果我没问清楚，要停的，改之。<br>本来记得<code>Observer</code>有一个<code>onSubscribe</code>的方法里面可以直接拿到<code>Disposable</code>就可以停止执行，没想到项目用的1.1版本没有<code>onSubscribe</code>，所以也没考证对错。</p>
-<hr>
-<p>换方法<br>伪代码,网络返回实体类People.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int a = 0;</span><br><span class="line"></span><br><span class="line">Observable.repeatWhen(</span><br><span class="line">	......return objObservable.flatMap(</span><br><span class="line">	......if(a==1)&#123;</span><br><span class="line">			return Observable.error(new Throwable(&quot;STOP&quot;));</span><br><span class="line">	    &#125;</span><br><span class="line">         return Observable.just(1).delay(2000, TimeUnit.MILLISECONDS);                         </span><br><span class="line">          .....                         </span><br><span class="line">                .subscribe(new Observer&lt;People&gt;() &#123;</span><br><span class="line">                                   </span><br><span class="line">                     @Override</span><br><span class="line">                     public void onNext(People people) &#123;</span><br><span class="line">                        if(people.getXXXX())&#123;</span><br><span class="line">							a==1;</span><br><span class="line">						&#125;</span><br><span class="line">                     &#125;</span><br><span class="line"></span><br><span class="line">                     @Override</span><br><span class="line">                     public void onError(Throwable e) &#123;</span><br><span class="line">                          Log.d(TAG,  e.toString());                                          </span><br><span class="line">                    &#125;</span><br><span class="line">		.....</span><br></pre></td></tr></table></figure></p>
-<p>不知道为啥a不能是Boolean，否则会报转换异常。原理了解了下，今天有些累，电脑studio坏了，代码也撸不出来，不打字了，有缘再见，无缘百度。</p>
-<hr>
-<p><img src="https://upload-images.jianshu.io/upload_images/6777107-6cc3cd92d673ba37.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50" alt="ZZZ"></p>
+<p>没了，话说回来，想不通为什么公司的代码乍一看是MVP，其实是在做多余的工作但是没人提。<br>View层不就是处理界面和管理生命周期的？为什么非要抽到P层去？<br>连个view.interface都没有算是什么MVP…..</p>
 
     
   </div>
@@ -277,10 +273,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/06/06/RxJavaTest1/">
+    <a class="show pull-left" href="/2018/06/07/RxJava循环请求网络直到条件达成/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/06/08/MVP名词背诵/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -405,7 +401,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2018/06/07/RxJava循环请求网络直到条件达成/';
+    var disqus_url = 'http://yoursite.com/2018/06/08/MVP名词背诵/';
     
     (function(){
       var dsq = document.createElement('script');
