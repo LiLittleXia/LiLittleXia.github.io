@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>RxJavaTest2 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="android,Android,日常,安卓" />
+  
+
+  <meta name="description" content="发现个问题，虽然RxJava标签看不少，但是不能运用到实际中去，用的时候还是懵。  doOnNext()作用是在next执行前做一些操作，比如我网络请求回来UserBean,但是我要对UserBean进行保存123456getUser(name,pw)		  .subscribeOn(Schedulers.io())                .observeOn(Schedulers.io">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJavaTest2">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/RxJavaTest2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="发现个问题，虽然RxJava标签看不少，但是不能运用到实际中去，用的时候还是懵。  doOnNext()作用是在next执行前做一些操作，比如我网络请求回来UserBean,但是我要对UserBean进行保存123456getUser(name,pw)		  .subscribeOn(Schedulers.io())                .observeOn(Schedulers.io">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-13T12:06:19.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxJavaTest2">
+<meta name="twitter:description" content="发现个问题，虽然RxJava标签看不少，但是不能运用到实际中去，用的时候还是懵。  doOnNext()作用是在next执行前做一些操作，比如我网络请求回来UserBean,但是我要对UserBean进行保存123456getUser(name,pw)		  .subscribeOn(Schedulers.io())                .observeOn(Schedulers.io">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#doOnNext"><span class="toc-text">doOnNext()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#distinct"><span class="toc-text">distinct</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-RxJavaTest2" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">RxJavaTest2</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.06.13</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>John Doe</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://lilittlexia.github.io//2018/06/13/RxJavaTest2/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <blockquote>
+<p>发现个问题，虽然RxJava标签看不少，但是不能运用到实际中去，用的时候还是懵。</p>
+</blockquote>
+<h1 id="doOnNext"><a href="#doOnNext" class="headerlink" title="doOnNext()"></a>doOnNext()</h1><p>作用是在next执行前做一些操作，比如我网络请求回来UserBean,但是我要对UserBean进行保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getUser(name,pw)</span><br><span class="line">		  .subscribeOn(Schedulers.io())</span><br><span class="line">                .observeOn(Schedulers.io())</span><br><span class="line">				.doOnNext(addUser(userBean))</span><br><span class="line">				.observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">				.subscribe(.....)</span><br></pre></td></tr></table></figure></p>
+<h1 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h1><p>去重<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(1, 1, 2, 2, 3,3, 5)</span><br><span class="line">                .distinct()</span><br><span class="line">				.subscribe(.....)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果会是1,2,3,5</p>
+<p>#zip<br>使用场景一般是比如我需要两个网络请求的参数才可以更新UI，所以需要用到zip,转载份代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Observable&lt;MobileAddress&gt; observable1 = Rx2AndroidNetworking.get(&quot;http://api.avatardata.cn/MobilePlace/LookUp?key=ec47b85086be4dc8b5d941f5abd37a4e&amp;mobileNumber=13021671512&quot;)</span><br><span class="line">                .build()</span><br><span class="line">                .getObjectObservable(MobileAddress.class);</span><br><span class="line"></span><br><span class="line">        Observable&lt;CategoryResult&gt; observable2 = Network.getGankApi()</span><br><span class="line">                .getCategoryData(&quot;Android&quot;,1,1);</span><br><span class="line"></span><br><span class="line">        Observable.zip(observable1, observable2, new BiFunction&lt;MobileAddress, CategoryResult, String&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public String apply(@NonNull MobileAddress mobileAddress, @NonNull CategoryResult categoryResult) throws Exception &#123;</span><br><span class="line">                return &quot;合并后的数据为：手机归属地：&quot;+mobileAddress.getResult().getMobilearea()+&quot;人名：&quot;+categoryResult.results.get(0).who;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).subscribeOn(Schedulers.io())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .subscribe(new Consumer&lt;String&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(@NonNull String s) throws Exception &#123;</span><br><span class="line">                        Log.e(TAG, &quot;accept: 成功：&quot; + s+&quot;\n&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(@NonNull Throwable throwable) throws Exception &#123;</span><br><span class="line">                        Log.e(TAG, &quot;accept: 失败：&quot; + throwable+&quot;\n&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">作者：nanchen2251</span><br><span class="line">链接：https://www.jianshu.com/p/81fac37430dd</span><br><span class="line">來源：简书</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>是不是dagger-android能像butterknife那样，只需要会用就OK了呢？明显不是啊……</p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            <span>微信扫一扫</span>
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <span>支付宝扫一扫</span>
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/06/12/dagger2-2/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2018/06/13/RxJavaTest2/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
