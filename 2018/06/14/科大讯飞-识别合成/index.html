@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>科大讯飞-识别合成 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="android,Android,日常,安卓" />
+  
+
+  <meta name="description" content="科大讯飞AIUI从识别到语音合成   先从官网下载jar包 依赖之 识别代码 12345678910111213141516171819202122232425262728293031323334.....//创建AIUIAgent,接口回调        mAIUIAgent = AIUIAgent.createAgent(this, getAIUIParams(), this);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科大讯飞-识别合成">
+<meta property="og:url" content="http://yoursite.com/2018/06/14/科大讯飞-识别合成/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="科大讯飞AIUI从识别到语音合成   先从官网下载jar包 依赖之 识别代码 12345678910111213141516171819202122232425262728293031323334.....//创建AIUIAgent,接口回调        mAIUIAgent = AIUIAgent.createAgent(this, getAIUIParams(), this);">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-14T11:48:28.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科大讯飞-识别合成">
+<meta name="twitter:description" content="科大讯飞AIUI从识别到语音合成   先从官网下载jar包 依赖之 识别代码 12345678910111213141516171819202122232425262728293031323334.....//创建AIUIAgent,接口回调        mAIUIAgent = AIUIAgent.createAgent(this, getAIUIParams(), this);">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-科大讯飞-识别合成" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">科大讯飞-识别合成</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.06.14</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>John Doe</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://lilittlexia.github.io//2018/06/14/科大讯飞-识别合成/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <blockquote>
+<p>科大讯飞AIUI从识别到语音合成</p>
+</blockquote>
+<ul>
+<li>先从官网下载jar包</li>
+<li>依赖之</li>
+<li><p>识别代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">.....</span><br><span class="line">//创建AIUIAgent,接口回调</span><br><span class="line">        mAIUIAgent = AIUIAgent.createAgent(this, getAIUIParams(), this);</span><br><span class="line">         public String getAIUIParams() &#123;</span><br><span class="line"></span><br><span class="line">        AssetManager assetManager = getResources().getAssets();</span><br><span class="line">        try &#123;</span><br><span class="line">            InputStream ins = assetManager.open(&quot;cfg/aiui_phone.cfg&quot;);</span><br><span class="line">            byte[] buffer = new byte[ins.available()];</span><br><span class="line"></span><br><span class="line">            ins.read(buffer);</span><br><span class="line">            ins.close();</span><br><span class="line"></span><br><span class="line">            AIUIParams = new String(buffer);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return AIUIParams;</span><br><span class="line">    &#125;</span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		//唤醒+录音</span><br><span class="line">        // 先发送唤醒消息，改变AIUI内部状态，只有唤醒状态才能接收语音输入</span><br><span class="line">        // 默认为oneshot 模式，即一次唤醒后就进入休眠，如果语音唤醒后，需要进行文本语义，请将改段逻辑copy至startTextNlp()开头处</span><br><span class="line">        if (AIUIConstant.STATE_WORKING != this.mAIUIState) &#123;</span><br><span class="line">            AIUIMessage wakeupMsg = new AIUIMessage(AIUIConstant.CMD_WAKEUP, 0, 0, &quot;&quot;, null);</span><br><span class="line">            mAIUIAgent.sendMessage(wakeupMsg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 打开AIUI内部录音机，开始录音</span><br><span class="line">        String params = &quot;sample_rate=16000,data_type=audio&quot;;</span><br><span class="line">        AIUIMessage writeMsg = new AIUIMessage(AIUIConstant.CMD_START_RECORD, 0, 0, params, null);</span><br><span class="line">        mAIUIAgent.sendMessage(writeMsg);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回调代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">   public void onEvent(AIUIEvent aiuiEvent) &#123;</span><br><span class="line">       switch (aiuiEvent.eventType) &#123;</span><br><span class="line">           //唤醒事件</span><br><span class="line">           case AIUIConstant.EVENT_WAKEUP: &#123;</span><br><span class="line">               showTip(&quot;唤醒&quot;);</span><br><span class="line">               break;</span><br><span class="line">           &#125;</span><br><span class="line">           //结果事件（包含听写，语义，离线语法结果）</span><br><span class="line">           case AIUIConstant.EVENT_RESULT: &#123;</span><br><span class="line">               try &#123;</span><br><span class="line">                   String info= aiuiEvent.info;</span><br><span class="line">                   Log.e(&quot;lw&quot;,info);</span><br><span class="line">                   JSONObject bizParamJson = new JSONObject(info);</span><br><span class="line">                   JSONObject data = bizParamJson.getJSONArray(&quot;data&quot;).getJSONObject(0);</span><br><span class="line">                   JSONObject params = data.getJSONObject(&quot;params&quot;);</span><br><span class="line">                   JSONObject content = data.getJSONArray(&quot;content&quot;).getJSONObject(0);</span><br><span class="line">                   if (content.has(&quot;cnt_id&quot;)) &#123;</span><br><span class="line">                       String cnt_id = content.getString(&quot;cnt_id&quot;);</span><br><span class="line">                       JSONObject cntJson = new JSONObject(new String(aiuiEvent.data.getByteArray(cnt_id), &quot;utf-8&quot;));</span><br><span class="line">                       String sub = params.optString(&quot;sub&quot;);</span><br><span class="line">                       JSONObject result = cntJson.optJSONObject(&quot;intent&quot;);</span><br><span class="line">                       if (&quot;nlp&quot;.equals(sub) &amp;&amp; result.length() &gt; 2) &#123;</span><br><span class="line">                           // 解析得到语义结果</span><br><span class="line">                           String str = &quot;&quot;;</span><br><span class="line">                           //在线语义结果</span><br><span class="line">                           if (result.optInt(&quot;rc&quot;) == 0) &#123;</span><br><span class="line">                               JSONObject answer = result.optJSONObject(&quot;answer&quot;);</span><br><span class="line">                               if (answer != null) &#123;</span><br><span class="line">                                   str = answer.optString(&quot;text&quot;);</span><br><span class="line">                                   tv.setText(str);</span><br><span class="line">                                   Log.e(&quot;lz&quot;,str);</span><br><span class="line">                                   //说话</span><br><span class="line">                                   speak(str);</span><br><span class="line">                               &#125;</span><br><span class="line">                           &#125; else &#123;</span><br><span class="line">                               str = &quot;rc4，无法识别&quot;;</span><br><span class="line">                           &#125;</span><br><span class="line">                           if (!TextUtils.isEmpty(str)) &#123;</span><br><span class="line">                           &#125;</span><br><span class="line"></span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125; catch (Throwable e) &#123;</span><br><span class="line">                   e.printStackTrace();</span><br><span class="line"></span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">               break;</span><br><span class="line">           &#125;</span><br><span class="line">           //休眠事件</span><br><span class="line">           case AIUIConstant.EVENT_SLEEP: &#123;</span><br><span class="line">               showTip(&quot;休眠事件&quot;);</span><br><span class="line">               break;</span><br><span class="line">           &#125;</span><br><span class="line">           // 状态事件</span><br><span class="line">           case AIUIConstant.EVENT_STATE: &#123;</span><br><span class="line">               mAIUIState = aiuiEvent.arg1;</span><br><span class="line">               if (AIUIConstant.STATE_IDLE == mAIUIState) &#123;</span><br><span class="line">                   // 闲置状态，AIUI未开启</span><br><span class="line">               &#125; else if (AIUIConstant.STATE_READY == mAIUIState) &#123;</span><br><span class="line">                   // AIUI已就绪，等待唤醒</span><br><span class="line">               &#125; else if (AIUIConstant.STATE_WORKING == mAIUIState) &#123;</span><br><span class="line">                   // AIUI工作中，可进行交互</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           break;</span><br><span class="line">           //错误事件</span><br><span class="line">           case AIUIConstant.EVENT_ERROR: &#123;</span><br><span class="line">               showTip(&quot;错误事件&quot;);</span><br><span class="line">               break;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>说话代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">private void speak(String ans)&#123;</span><br><span class="line">       byte[] ttsData = new byte[0];  //转为二进制数据</span><br><span class="line">       try &#123;</span><br><span class="line">           ttsData = ans.getBytes(&quot;utf-8&quot;);</span><br><span class="line">       &#125; catch (UnsupportedEncodingException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       StringBuffer params = new StringBuffer();  //构建合成参数</span><br><span class="line">       params.append(&quot;vcn=xiaoyan&quot;);  //合成发音人</span><br><span class="line">       params.append(&quot;,speed=50&quot;);  //合成速度</span><br><span class="line">       params.append(&quot;,pitch=50&quot;);  //合成音调</span><br><span class="line">       params.append(&quot;,volume=50&quot;);  //合成音量</span><br><span class="line"></span><br><span class="line">       AIUIMessage startTts = new AIUIMessage(AIUIConstant.CMD_TTS, AIUIConstant.START, 0, params.toString(), ttsData);</span><br><span class="line">       mAIUIAgent.sendMessage(startTts);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意关掉它</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        if (null != this.mAIUIAgent) &#123;</span><br><span class="line">            AIUIMessage stopMsg = new AIUIMessage(AIUIConstant.CMD_STOP, 0, 0, null, null);</span><br><span class="line">            mAIUIAgent.sendMessage(stopMsg);</span><br><span class="line">            this.mAIUIAgent.destroy();</span><br><span class="line">            this.mAIUIAgent = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            <span>微信扫一扫</span>
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <span>支付宝扫一扫</span>
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/06/13/RxJavaTest2/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2018/06/14/科大讯飞-识别合成/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
