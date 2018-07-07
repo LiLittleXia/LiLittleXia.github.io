@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>WorkManager使用 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="android,Android,日常,安卓" />
+  
+
+  <meta name="description" content="WorkManager 的使用。后知后觉，没想到我现在在上996了，醉了。  哪来的Android Jetpack Components–&amp;gt;Architecture–&amp;gt;WorkManager 是什么玩意在某种意义上就是取代service用的 使用 依赖 12implementation &amp;quot;android.arch.work:work-runtime:1.0.0-alpha0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WorkManager使用">
+<meta property="og:url" content="http://yoursite.com/2018/07/07/WorkManager使用/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="WorkManager 的使用。后知后觉，没想到我现在在上996了，醉了。  哪来的Android Jetpack Components–&amp;gt;Architecture–&amp;gt;WorkManager 是什么玩意在某种意义上就是取代service用的 使用 依赖 12implementation &amp;quot;android.arch.work:work-runtime:1.0.0-alpha0">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/LiLittleXia/MarkdownPictures/master/%E4%BC%98%E7%A7%80.jpg">
+<meta property="og:updated_time" content="2018-07-07T15:16:28.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WorkManager使用">
+<meta name="twitter:description" content="WorkManager 的使用。后知后觉，没想到我现在在上996了，醉了。  哪来的Android Jetpack Components–&amp;gt;Architecture–&amp;gt;WorkManager 是什么玩意在某种意义上就是取代service用的 使用 依赖 12implementation &amp;quot;android.arch.work:work-runtime:1.0.0-alpha0">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/LiLittleXia/MarkdownPictures/master/%E4%BC%98%E7%A7%80.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#哪来的"><span class="toc-text">哪来的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是什么玩意"><span class="toc-text">是什么玩意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#距离下班还有3小时43分钟26秒"><span class="toc-text">距离下班还有3小时43分钟26秒</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-WorkManager使用" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">WorkManager使用</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.07.07</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>John Doe</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://lilittlexia.github.io//2018/07/07/WorkManager使用/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <blockquote>
+<p>WorkManager 的使用。后知后觉，没想到我现在在上996了，醉了。</p>
+</blockquote>
+<h3 id="哪来的"><a href="#哪来的" class="headerlink" title="哪来的"></a>哪来的</h3><p><code>Android Jetpack Components</code>–&gt;<code>Architecture</code>–&gt;<code>WorkManager</code></p>
+<h3 id="是什么玩意"><a href="#是什么玩意" class="headerlink" title="是什么玩意"></a>是什么玩意</h3><p>在某种意义上就是取代service用的</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li><p>依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation &quot;android.arch.work:work-runtime:1.0.0-alpha04&quot;</span><br><span class="line">implementation &quot;android.arch.work:work-firebase:1.0.0-alpha04&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Data</code> 传值用的，类似与<code>Intent</code>传值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Data data = new Data.Builder()</span><br><span class="line">               .putString(&quot;data&quot;,&quot;这里传值&quot;)</span><br><span class="line">               .build();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>new 一个任务执行者 <code>Worker</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class MyWorker extends Worker &#123;</span><br><span class="line"></span><br><span class="line">    private static final String TAG = &quot;MyWorker&quot;;</span><br><span class="line"></span><br><span class="line">    @NonNull</span><br><span class="line">    @Override</span><br><span class="line">    public Result doWork() &#123;</span><br><span class="line">        //这里写要执行的代码，使用getInputData().getXXX获取data</span><br><span class="line">        Log.e(TAG, &quot;doWork: &quot; + getInputData().getString(&quot;time&quot;, &quot;&quot;));</span><br><span class="line">        return Result.SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>继承worker，onWork里面写需要执行的代码</p>
+<ul>
+<li><p>开始请求worker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//data直接setInputData进去，OneTimeWorkRequest执行一次，不重复</span><br><span class="line">      WorkRequest request = new OneTimeWorkRequest.Builder(MyWorker.class).setInputData(data).build();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把请求放到队列里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WorkManager.getInstance().enqueue(request);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取执行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">WorkManager.getInstance()</span><br><span class="line">        .getStatusById(request.getId())//判断是哪个worker</span><br><span class="line">        .observe(this, new Observer&lt;WorkStatus&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onChanged(@Nullable WorkStatus workStatus) &#123;</span><br><span class="line">                if (workStatus != null &amp;&amp; workStatus.getState().isFinished()) &#123;</span><br><span class="line">                    tv.setText(workStatus.getOutputData().getString(&quot;name&quot;,&quot;&quot;));//获取传回的值</span><br><span class="line">                    Log.e(TAG, &quot;onChanged: &quot;+workStatus.getOutputData().getString(&quot;name&quot;,&quot;&quot;));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>约束执行条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Constraints constraints = new Constraints.Builder()</span><br><span class="line">        .setRequiredNetworkType(NetworkType.CONNECTED)  // 网络状态</span><br><span class="line">        .setRequiresBatteryNotLow(true)                 // 不在电量不足时执行</span><br><span class="line">        .setRequiresCharging(true)                      // 在充电时执行</span><br><span class="line">        .setRequiresStorageNotLow(true)                 // 不在存储容量不足时执行</span><br><span class="line">        //.setRequiresDeviceIdle(true)                    // 在待机状态下执行，需要 API 23</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">WorkRequest request = new OneTimeWorkRequest.Builder(MyWorker.class)</span><br><span class="line">        .setConstraints(constraints)</span><br><span class="line">        .setInputData(data)</span><br><span class="line">        .build();</span><br><span class="line">WorkManager.getInstance().enqueue(request);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定时任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WorkRequest request2 = new PeriodicWorkRequest</span><br><span class="line">        .Builder(MyWorker.class, 15, TimeUnit.MINUTES)//最少间隔15s</span><br><span class="line">        .setConstraints(constraints)</span><br><span class="line">        .setInputData(data)</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>任务链<br>从A—&gt;B—-&gt;C</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注意request必须是OneTimeWorkRequest的</span><br><span class="line">      WorkManager.getInstance().beginWith(requestA).then(requestB).then(requestC).enqueue();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>A/B执行完了再执行C<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WorkManager.getInstance().beginWith(requestA,requestB).then(requestC).enqueue();</span><br></pre></td></tr></table></figure></p>
+<p>执行A—B<br>       |<br>       ——-E<br>       |<br>   C—D  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">        WorkContinuation workContinuation1 =  WorkManager.getInstance().beginWith(requestA).then(requestB);</span><br><span class="line">        WorkContinuation workContinuation2 =  WorkManager.getInstance().beginWith(requestC).then(requestD);</span><br><span class="line">        WorkContinuation.combine(workContinuation1,workContinuation2).then(requestE).enqueue();</span><br><span class="line">``` </span><br><span class="line">传值，上一个任务的outputdata在下一个任务的时候会变成inputdata</span><br><span class="line">* 发送待条件任务</span><br></pre></td></tr></table></figure>
+<pre><code>WorkManager.getInstance()
+        .beginUniqueWork(&quot;worker&quot;, ExistingWorkPolicy.REPLACE,request)
+        .enqueue();
+
+//REPLACE    删除已有的任务，添加现有的任务
+//KEEP    什么都不做，不添加新任务，让已有的继续执行
+//APPEND    加入已有任务的任务链最末端
+</code></pre><p><code>`</code></p>
+<h3 id="距离下班还有3小时43分钟26秒"><a href="#距离下班还有3小时43分钟26秒" class="headerlink" title="距离下班还有3小时43分钟26秒"></a>距离下班还有3小时43分钟26秒</h3><p><img src="https://raw.githubusercontent.com/LiLittleXia/MarkdownPictures/master/%E4%BC%98%E7%A7%80.jpg" alt="奥利给"></p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            <span>微信扫一扫</span>
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <span>支付宝扫一扫</span>
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/07/02/小玩具之悬浮窗/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2018/07/07/WorkManager使用/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
