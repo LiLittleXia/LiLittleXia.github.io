@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关于手机wifi的adb命令 | Hexo</title>
+  <title>android事件分发机制 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,17 +15,17 @@
     <meta name="keywords" content="android,Android,日常,安卓" />
   
 
-  <meta name="description" content="整天鼓捣机器人需要使用adb命令，所以记录下关于wifi的adb命令  查看当前手机连接的wifiadb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 status 关闭wifiadb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 terminate 手机之前连过的">
+  <meta name="description" content="学了许久的事件分发已经忘完了，今天复习一下  github地址demo 三大方法dispatchTouchEvent onInterceptTouchEvent onTouchEvent说明只有viewgroup有onInterceptTouchEvent 分发顺序 Activity-&amp;gt;ViewGroup-&amp;gt;ViewdispatchTouchEvent 设置成false从上一级开始o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于手机wifi的adb命令">
-<meta property="og:url" content="http://yoursite.com/2019/02/18/关于手机wifi的adb命令/index.html">
+<meta property="og:title" content="android事件分发机制">
+<meta property="og:url" content="http://yoursite.com/2019/02/24/android事件分发机制/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="整天鼓捣机器人需要使用adb命令，所以记录下关于wifi的adb命令  查看当前手机连接的wifiadb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 status 关闭wifiadb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 terminate 手机之前连过的">
+<meta property="og:description" content="学了许久的事件分发已经忘完了，今天复习一下  github地址demo 三大方法dispatchTouchEvent onInterceptTouchEvent onTouchEvent说明只有viewgroup有onInterceptTouchEvent 分发顺序 Activity-&amp;gt;ViewGroup-&amp;gt;ViewdispatchTouchEvent 设置成false从上一级开始o">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-18T12:31:24.665Z">
+<meta property="og:updated_time" content="2019-02-24T15:01:42.321Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于手机wifi的adb命令">
-<meta name="twitter:description" content="整天鼓捣机器人需要使用adb命令，所以记录下关于wifi的adb命令  查看当前手机连接的wifiadb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 status 关闭wifiadb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 terminate 手机之前连过的">
+<meta name="twitter:title" content="android事件分发机制">
+<meta name="twitter:description" content="学了许久的事件分发已经忘完了，今天复习一下  github地址demo 三大方法dispatchTouchEvent onInterceptTouchEvent onTouchEvent说明只有viewgroup有onInterceptTouchEvent 分发顺序 Activity-&amp;gt;ViewGroup-&amp;gt;ViewdispatchTouchEvent 设置成false从上一级开始o">
 
   
 
@@ -184,20 +184,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看当前手机连接的wifi"><span class="toc-text">查看当前手机连接的wifi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭wifi"><span class="toc-text">关闭wifi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手机之前连过的wifi"><span class="toc-text">手机之前连过的wifi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#断开连接，然后根据上面的id连接想要的wifi-最后一个参数就是id"><span class="toc-text">断开连接，然后根据上面的id连接想要的wifi 最后一个参数就是id</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新连接"><span class="toc-text">重新连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重连接当前已连接的WIFI"><span class="toc-text">重连接当前已连接的WIFI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#断开当前连接"><span class="toc-text">断开当前连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#再次连接-如果已经连接则不执行"><span class="toc-text">再次连接 如果已经连接则不执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OVER"><span class="toc-text">OVER</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#github地址"><span class="toc-text">github地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三大方法"><span class="toc-text">三大方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分发顺序"><span class="toc-text">分发顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dispatchTouchEvent"><span class="toc-text">dispatchTouchEvent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onInterceptTouchEvent"><span class="toc-text">onInterceptTouchEvent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onTouchEvent"><span class="toc-text">onTouchEvent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#记住"><span class="toc-text">记住</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-关于手机wifi的adb命令" class="article article-type-post" itemprop="blogPost">
+   <article id="post-android事件分发机制" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">关于手机wifi的adb命令</h1>
+    <h1 class="post-title">android事件分发机制</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2019.02.18</span>
+        <span>2019.02.24</span>
       </span>
 
       
@@ -213,7 +213,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://lilittlexia.github.io//2019/02/18/关于手机wifi的adb命令/#disqus_thread"></a>
+          <a href="https://lilittlexia.github.io//2019/02/24/android事件分发机制/#disqus_thread"></a>
         </span>
       
 
@@ -231,18 +231,20 @@
   <div class="article-content">
     
       <blockquote>
-<p>整天鼓捣机器人需要使用adb命令，所以记录下关于wifi的adb命令</p>
+<p>学了许久的事件分发已经忘完了，今天复习一下</p>
 </blockquote>
-<h3 id="查看当前手机连接的wifi"><a href="#查看当前手机连接的wifi" class="headerlink" title="查看当前手机连接的wifi"></a>查看当前手机连接的wifi</h3><p><code>adb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 status</code></p>
-<h3 id="关闭wifi"><a href="#关闭wifi" class="headerlink" title="关闭wifi"></a>关闭wifi</h3><p><code>adb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 terminate</code></p>
-<h3 id="手机之前连过的wifi"><a href="#手机之前连过的wifi" class="headerlink" title="手机之前连过的wifi"></a>手机之前连过的wifi</h3><p><code>adb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 list_networks</code></p>
-<h3 id="断开连接，然后根据上面的id连接想要的wifi-最后一个参数就是id"><a href="#断开连接，然后根据上面的id连接想要的wifi-最后一个参数就是id" class="headerlink" title="断开连接，然后根据上面的id连接想要的wifi 最后一个参数就是id"></a>断开连接，然后根据上面的id连接想要的wifi 最后一个参数就是id</h3><p><code>adb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 select_network 12</code></p>
-<h3 id="重新连接"><a href="#重新连接" class="headerlink" title="重新连接"></a>重新连接</h3><p><code>adb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 reassociate</code></p>
-<h3 id="重连接当前已连接的WIFI"><a href="#重连接当前已连接的WIFI" class="headerlink" title="重连接当前已连接的WIFI"></a>重连接当前已连接的WIFI</h3><p><code>adb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 reattach</code></p>
-<h3 id="断开当前连接"><a href="#断开当前连接" class="headerlink" title="断开当前连接"></a>断开当前连接</h3><p><code>adb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 disconnect</code></p>
-<h3 id="再次连接-如果已经连接则不执行"><a href="#再次连接-如果已经连接则不执行" class="headerlink" title="再次连接 如果已经连接则不执行"></a>再次连接 如果已经连接则不执行</h3><p><code>adb shell wpa_cli -iwlan0 -g@android:wpa_wlan0 IFNAME=wlan0 reconnect</code></p>
-<hr>
-<h3 id="OVER"><a href="#OVER" class="headerlink" title="OVER"></a>OVER</h3>
+<h3 id="github地址"><a href="#github地址" class="headerlink" title="github地址"></a>github地址</h3><p><a href="https://github.com/LiLittleXia/TouchTest" target="_blank" rel="noopener">demo</a></p>
+<h3 id="三大方法"><a href="#三大方法" class="headerlink" title="三大方法"></a>三大方法</h3><p><code>dispatchTouchEvent onInterceptTouchEvent onTouchEvent</code><br>说明只有viewgroup有<code>onInterceptTouchEvent</code></p>
+<h3 id="分发顺序"><a href="#分发顺序" class="headerlink" title="分发顺序"></a>分发顺序</h3><ul>
+<li><code>Activity-&gt;ViewGroup-&gt;View</code><h3 id="dispatchTouchEvent"><a href="#dispatchTouchEvent" class="headerlink" title="dispatchTouchEvent"></a>dispatchTouchEvent</h3></li>
+<li>设置成false从上一级开始onTouch</li>
+<li>设置成true表示直接消费掉啥都没了<h3 id="onInterceptTouchEvent"><a href="#onInterceptTouchEvent" class="headerlink" title="onInterceptTouchEvent"></a>onInterceptTouchEvent</h3></li>
+<li>设置成false和super一样向下分发</li>
+<li>设置成true则表示拦截事件，从当前开始执行onTouch,然后向上传递<h3 id="onTouchEvent"><a href="#onTouchEvent" class="headerlink" title="onTouchEvent"></a>onTouchEvent</h3></li>
+<li>设置成false不消费事件，继续向上传递</li>
+<li>设置成true消费事件，事件停止<h3 id="记住"><a href="#记住" class="headerlink" title="记住"></a>记住</h3>事件传递是一个U形图</li>
+</ul>
+
     
   </div>
 
@@ -279,10 +281,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/11/07/网络变化监听广播兼容6-00/">
+    <a class="show pull-left" href="/2019/02/18/关于手机wifi的adb命令/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/02/24/android事件分发机制/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -407,7 +409,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2019/02/18/关于手机wifi的adb命令/';
+    var disqus_url = 'http://yoursite.com/2019/02/24/android事件分发机制/';
     
     (function(){
       var dsq = document.createElement('script');
