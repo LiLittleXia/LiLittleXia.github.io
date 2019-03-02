@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>android事件分发机制 | Hexo</title>
+  <title>自定义View基础 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,17 +15,17 @@
     <meta name="keywords" content="android,Android,日常,安卓" />
   
 
-  <meta name="description" content="学了许久的事件分发已经忘完了，今天复习一下  github地址demo 三大方法dispatchTouchEvent onInterceptTouchEvent onTouchEvent说明只有viewgroup有onInterceptTouchEvent 分发顺序 Activity-&amp;gt;ViewGroup-&amp;gt;ViewdispatchTouchEvent 设置成false从上一级开始o">
+  <meta name="description" content="长时间不用都忘记了，复习下  1.onMeasure-测量宽高尺寸 int widthMeasureSpec, int heightMeasureSpec 包含了两个信息，测量模式和尺寸大小 123//获取方法int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android事件分发机制">
-<meta property="og:url" content="http://yoursite.com/2019/02/24/android事件分发机制/index.html">
+<meta property="og:title" content="自定义View基础">
+<meta property="og:url" content="http://yoursite.com/2019/03/02/自定义View基础/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="学了许久的事件分发已经忘完了，今天复习一下  github地址demo 三大方法dispatchTouchEvent onInterceptTouchEvent onTouchEvent说明只有viewgroup有onInterceptTouchEvent 分发顺序 Activity-&amp;gt;ViewGroup-&amp;gt;ViewdispatchTouchEvent 设置成false从上一级开始o">
+<meta property="og:description" content="长时间不用都忘记了，复习下  1.onMeasure-测量宽高尺寸 int widthMeasureSpec, int heightMeasureSpec 包含了两个信息，测量模式和尺寸大小 123//获取方法int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widt">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-24T15:01:42.321Z">
+<meta property="og:updated_time" content="2019-03-02T14:58:09.762Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="android事件分发机制">
-<meta name="twitter:description" content="学了许久的事件分发已经忘完了，今天复习一下  github地址demo 三大方法dispatchTouchEvent onInterceptTouchEvent onTouchEvent说明只有viewgroup有onInterceptTouchEvent 分发顺序 Activity-&amp;gt;ViewGroup-&amp;gt;ViewdispatchTouchEvent 设置成false从上一级开始o">
+<meta name="twitter:title" content="自定义View基础">
+<meta name="twitter:description" content="长时间不用都忘记了，复习下  1.onMeasure-测量宽高尺寸 int widthMeasureSpec, int heightMeasureSpec 包含了两个信息，测量模式和尺寸大小 123//获取方法int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widt">
 
   
 
@@ -184,20 +184,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#github地址"><span class="toc-text">github地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三大方法"><span class="toc-text">三大方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分发顺序"><span class="toc-text">分发顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dispatchTouchEvent"><span class="toc-text">dispatchTouchEvent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onInterceptTouchEvent"><span class="toc-text">onInterceptTouchEvent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onTouchEvent"><span class="toc-text">onTouchEvent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#记住"><span class="toc-text">记住</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-onMeasure-测量宽高尺寸"><span class="toc-text">1.onMeasure-测量宽高尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onDrow和自定义属性"><span class="toc-text">onDrow和自定义属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义viewgroup"><span class="toc-text">自定义viewgroup</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-android事件分发机制" class="article article-type-post" itemprop="blogPost">
+   <article id="post-自定义View基础" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">android事件分发机制</h1>
+    <h1 class="post-title">自定义View基础</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2019.02.24</span>
+        <span>2019.03.02</span>
       </span>
 
       
@@ -213,7 +213,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://lilittlexia.github.io//2019/02/24/android事件分发机制/#disqus_thread"></a>
+          <a href="https://lilittlexia.github.io//2019/03/02/自定义View基础/#disqus_thread"></a>
         </span>
       
 
@@ -231,18 +231,20 @@
   <div class="article-content">
     
       <blockquote>
-<p>学了许久的事件分发已经忘完了，今天复习一下</p>
+<p>长时间不用都忘记了，复习下</p>
 </blockquote>
-<h3 id="github地址"><a href="#github地址" class="headerlink" title="github地址"></a>github地址</h3><p><a href="https://github.com/LiLittleXia/TouchTest" target="_blank" rel="noopener">demo</a></p>
-<h3 id="三大方法"><a href="#三大方法" class="headerlink" title="三大方法"></a>三大方法</h3><p><code>dispatchTouchEvent onInterceptTouchEvent onTouchEvent</code><br>说明只有viewgroup有<code>onInterceptTouchEvent</code></p>
-<h3 id="分发顺序"><a href="#分发顺序" class="headerlink" title="分发顺序"></a>分发顺序</h3><ul>
-<li><code>Activity-&gt;ViewGroup-&gt;View</code><h3 id="dispatchTouchEvent"><a href="#dispatchTouchEvent" class="headerlink" title="dispatchTouchEvent"></a>dispatchTouchEvent</h3></li>
-<li>设置成false从上一级开始onTouch</li>
-<li>设置成true表示直接消费掉啥都没了<h3 id="onInterceptTouchEvent"><a href="#onInterceptTouchEvent" class="headerlink" title="onInterceptTouchEvent"></a>onInterceptTouchEvent</h3></li>
-<li>设置成false和super一样向下分发</li>
-<li>设置成true则表示拦截事件，从当前开始执行onTouch,然后向上传递<h3 id="onTouchEvent"><a href="#onTouchEvent" class="headerlink" title="onTouchEvent"></a>onTouchEvent</h3></li>
-<li>设置成false不消费事件，继续向上传递</li>
-<li>设置成true消费事件，事件停止<h3 id="记住"><a href="#记住" class="headerlink" title="记住"></a>记住</h3>事件传递是一个U形图</li>
+<h3 id="1-onMeasure-测量宽高尺寸"><a href="#1-onMeasure-测量宽高尺寸" class="headerlink" title="1.onMeasure-测量宽高尺寸"></a>1.onMeasure-测量宽高尺寸</h3><ul>
+<li><code>int widthMeasureSpec, int heightMeasureSpec</code></li>
+<li><p>包含了两个信息，测量模式和尺寸大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//获取方法</span><br><span class="line">int widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">int widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>wrap_content</code>对应的测量模式为<code>AT_MOST</code>，当前获得的尺寸为最大尺寸，在这个尺寸里我们可以随便搞</p>
+</li>
+<li><code>match_parent</code>对应的测量模式为<code>EXACTLY</code>，当前的尺寸就是当前View应该取的尺寸,父类所有剩余空间是已知的，用之</li>
+<li><code>固定尺寸（如100dp）</code>对应的测量模式为<code>EXACTLY</code>,当前的尺寸就是当前View应该取的尺寸,用户指定尺寸，不需要干涉</li>
+<li><code>UNSPECIFIED</code>,父容器没有对当前View有任何限制，当前View可以任意取尺寸<br><a href="https://github.com/LiLittleXia/MyViewTest/blob/master/app/src/main/java/com/lz/myviewtest/MyView.java" target="_blank" rel="noopener">例子链接</a><h3 id="onDrow和自定义属性"><a href="#onDrow和自定义属性" class="headerlink" title="onDrow和自定义属性"></a>onDrow和自定义属性</h3><a href="https://github.com/LiLittleXia/MyViewTest/blob/master/app/src/main/java/com/lz/myviewtest/MyCircularView.java" target="_blank" rel="noopener">例子链接</a><h3 id="自定义viewgroup"><a href="#自定义viewgroup" class="headerlink" title="自定义viewgroup"></a>自定义viewgroup</h3></li>
+<li>首先重写onMeasure，实现测量子View大小以及设定ViewGroup的大小</li>
+<li>再在<code>onLayout</code>中摆放子View的位置<br><a href="https://github.com/LiLittleXia/MyViewTest/blob/master/app/src/main/java/com/lz/myviewtest/MyViewGroup.java" target="_blank" rel="noopener">例子链接</a></li>
 </ul>
 
     
@@ -281,10 +283,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2019/02/18/关于手机wifi的adb命令/">
+    <a class="show pull-left" href="/2019/02/24/android事件分发机制/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/03/02/自定义View基础/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -409,7 +411,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2019/02/24/android事件分发机制/';
+    var disqus_url = 'http://yoursite.com/2019/03/02/自定义View基础/';
     
     (function(){
       var dsq = document.createElement('script');
