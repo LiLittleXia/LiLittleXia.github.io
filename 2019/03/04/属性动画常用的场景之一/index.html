@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>自定义View基础 | Hexo</title>
+  <title>属性动画常用的场景之一 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,17 +15,17 @@
     <meta name="keywords" content="android,Android,日常,安卓" />
   
 
-  <meta name="description" content="长时间不用都忘记了，复习下  1.onMeasure-测量宽高尺寸 int widthMeasureSpec, int heightMeasureSpec 包含了两个信息，测量模式和尺寸大小 123//获取方法int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widt">
+  <meta name="description" content="学习属性动画,学习自传送门  Android系统中提供的四种类型的过渡动画 APPEARING–添加view当通过 设置子View的可见性为VISIBLE或者通过addView方法添加子View 来显示子View时，子View就会执行该类型的动画。该类型动画的周期为300毫秒，默认延迟为300毫秒。 DISAPPEARING–移除view当通过 设置子View的可见性为GONE或者通过remov">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义View基础">
-<meta property="og:url" content="http://yoursite.com/2019/03/02/自定义View基础/index.html">
+<meta property="og:title" content="属性动画常用的场景之一">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/属性动画常用的场景之一/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="长时间不用都忘记了，复习下  1.onMeasure-测量宽高尺寸 int widthMeasureSpec, int heightMeasureSpec 包含了两个信息，测量模式和尺寸大小 123//获取方法int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widt">
+<meta property="og:description" content="学习属性动画,学习自传送门  Android系统中提供的四种类型的过渡动画 APPEARING–添加view当通过 设置子View的可见性为VISIBLE或者通过addView方法添加子View 来显示子View时，子View就会执行该类型的动画。该类型动画的周期为300毫秒，默认延迟为300毫秒。 DISAPPEARING–移除view当通过 设置子View的可见性为GONE或者通过remov">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-02T14:58:09.762Z">
+<meta property="og:updated_time" content="2019-03-03T16:27:51.585Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义View基础">
-<meta name="twitter:description" content="长时间不用都忘记了，复习下  1.onMeasure-测量宽高尺寸 int widthMeasureSpec, int heightMeasureSpec 包含了两个信息，测量模式和尺寸大小 123//获取方法int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widt">
+<meta name="twitter:title" content="属性动画常用的场景之一">
+<meta name="twitter:description" content="学习属性动画,学习自传送门  Android系统中提供的四种类型的过渡动画 APPEARING–添加view当通过 设置子View的可见性为VISIBLE或者通过addView方法添加子View 来显示子View时，子View就会执行该类型的动画。该类型动画的周期为300毫秒，默认延迟为300毫秒。 DISAPPEARING–移除view当通过 设置子View的可见性为GONE或者通过remov">
 
   
 
@@ -184,20 +184,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-onMeasure-测量宽高尺寸"><span class="toc-text">1.onMeasure-测量宽高尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onDrow和自定义属性"><span class="toc-text">onDrow和自定义属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义viewgroup"><span class="toc-text">自定义viewgroup</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Android系统中提供的四种类型的过渡动画"><span class="toc-text">Android系统中提供的四种类型的过渡动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的设置方法"><span class="toc-text">常用的设置方法</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-自定义View基础" class="article article-type-post" itemprop="blogPost">
+   <article id="post-属性动画常用的场景之一" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">自定义View基础</h1>
+    <h1 class="post-title">属性动画常用的场景之一</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2019.03.02</span>
+        <span>2019.03.04</span>
       </span>
 
       
@@ -213,7 +213,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://lilittlexia.github.io//2019/03/02/自定义View基础/#disqus_thread"></a>
+          <a href="https://lilittlexia.github.io//2019/03/04/属性动画常用的场景之一/#disqus_thread"></a>
         </span>
       
 
@@ -231,21 +231,26 @@
   <div class="article-content">
     
       <blockquote>
-<p>长时间不用都忘记了，复习下</p>
+<p>学习属性动画,学习自<a href="https://www.jianshu.com/p/b117c974deaf" target="_blank" rel="noopener">传送门</a></p>
 </blockquote>
-<h3 id="1-onMeasure-测量宽高尺寸"><a href="#1-onMeasure-测量宽高尺寸" class="headerlink" title="1.onMeasure-测量宽高尺寸"></a>1.onMeasure-测量宽高尺寸</h3><ul>
-<li><code>int widthMeasureSpec, int heightMeasureSpec</code></li>
-<li><p>包含了两个信息，测量模式和尺寸大小</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//获取方法</span><br><span class="line">int widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">int widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br></pre></td></tr></table></figure>
+<h3 id="Android系统中提供的四种类型的过渡动画"><a href="#Android系统中提供的四种类型的过渡动画" class="headerlink" title="Android系统中提供的四种类型的过渡动画"></a>Android系统中提供的四种类型的过渡动画</h3><ul>
+<li><code>APPEARING</code>–添加view<br>当通过 设置子View的可见性为VISIBLE或者通过addView方法添加子View 来显示子View时，子View就会执行该类型的动画。<br>该类型动画的周期为300毫秒，默认延迟为300毫秒。</li>
+<li><code>DISAPPEARING</code>–移除view<br>当通过 设置子View的可见性为GONE或者通过removeView方法移除子View 来隐藏子View时，子View就会执行该类型的动画。<br>该类型动画的周期为300毫秒，默认延迟为0毫秒。</li>
+<li><code>CHANGE_APPEARING</code>–显示子view是，全体子view依次执行动画再显示自己的动画<br>当显示子View时，所有的兄弟View就会立即依次执行该类型动画并且兄弟View之间执行动画的间隙默认为0毫秒，然后才会执行显示子View的动画。<br>该类型动画的周期为300毫秒，默认延迟为0毫秒。</li>
+<li><code>CHANGE_DISAPPEARING</code>–和上面相反<br>当隐藏子View的动画执行完毕后，所有的兄弟View就会依次执行该类型动画并且兄弟View之间执行动画的间隙默认为0毫秒。<br>该类型动画的周期为300毫秒，默认延迟为300毫秒。<h3 id="常用的设置方法"><a href="#常用的设置方法" class="headerlink" title="常用的设置方法"></a>常用的设置方法</h3></li>
+<li><p><code>setStagger</code>方法–多子view执行同一类型动画之间的时间间隙<br>当多个子View要执行同一个类型的动画时，就可以通过该方法来设置子View之间执行动画的间隙，默认为0毫秒。</p>
 </li>
-<li><p><code>wrap_content</code>对应的测量模式为<code>AT_MOST</code>，当前获得的尺寸为最大尺寸，在这个尺寸里我们可以随便搞</p>
+<li><p><code>setAnimator</code>方法<br>为指定类型的过渡动画设置自定义的属性动画。</p>
 </li>
-<li><code>match_parent</code>对应的测量模式为<code>EXACTLY</code>，当前的尺寸就是当前View应该取的尺寸,父类所有剩余空间是已知的，用之</li>
-<li><code>固定尺寸（如100dp）</code>对应的测量模式为<code>EXACTLY</code>,当前的尺寸就是当前View应该取的尺寸,用户指定尺寸，不需要干涉</li>
-<li><code>UNSPECIFIED</code>,父容器没有对当前View有任何限制，当前View可以任意取尺寸<br><a href="https://github.com/LiLittleXia/MyViewTest/blob/master/app/src/main/java/com/lz/myviewtest/MyView.java" target="_blank" rel="noopener">例子链接</a><h3 id="onDrow和自定义属性"><a href="#onDrow和自定义属性" class="headerlink" title="onDrow和自定义属性"></a>onDrow和自定义属性</h3><a href="https://github.com/LiLittleXia/MyViewTest/blob/master/app/src/main/java/com/lz/myviewtest/MyCircularView.java" target="_blank" rel="noopener">例子链接</a><h3 id="自定义viewgroup"><a href="#自定义viewgroup" class="headerlink" title="自定义viewgroup"></a>自定义viewgroup</h3></li>
-<li>首先重写onMeasure，实现测量子View大小以及设定ViewGroup的大小</li>
-<li>再在<code>onLayout</code>中摆放子View的位置<br><a href="https://github.com/LiLittleXia/MyViewTest/blob/master/app/src/main/java/com/lz/myviewtest/MyViewGroup.java" target="_blank" rel="noopener">例子链接</a></li>
+<li><p><code>setDuration</code>方法<br>为指定类型的过渡动画设置执行动画的周期，默认为300毫秒。</p>
+</li>
+<li><p><code>setStartDelay</code>方法<br>为指定类型的过渡动画设置延迟执行的时间，默认与过渡动画的类型相关，上面已经说过。</p>
+</li>
+<li><p><code>setLayoutTransition</code>方法<br>为ViewGroup设置过渡动画。</p>
+</li>
 </ul>
+<hr>
+<p><a href="https://github.com/LiLittleXia/ObjectAnimatorTest" target="_blank" rel="noopener">项目例子地址</a></p>
 
     
   </div>
@@ -283,10 +288,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2019/02/24/android事件分发机制/">
+    <a class="show pull-left" href="/2019/03/02/自定义View基础/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/03/04/属性动画常用的场景之一/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -411,7 +416,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2019/03/02/自定义View基础/';
+    var disqus_url = 'http://yoursite.com/2019/03/04/属性动画常用的场景之一/';
     
     (function(){
       var dsq = document.createElement('script');
