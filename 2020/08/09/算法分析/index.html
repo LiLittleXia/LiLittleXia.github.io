@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>算法复杂度标尺 | LzBlog</title>
+  <title>算法分析 | LzBlog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,24 +15,23 @@
     <meta name="keywords" content="android,Android,日常,安卓" />
   
 
-  <meta name="description" content="01-b-1到01-c-3  定义T(n)算法评价在所有规模为n的问题实例中，将他们的计算成本整体比较，取最大值。亦即，在规模同为n的所有势力中，只关注最坏(成本最高)者。 图灵机了解了图灵机工作方式 RAM通过图灵机和RAM讲计算成本转化为了计算行数(次数)  大O记号悲观角度，最大复杂度 其他记号最小复杂度、居中复杂度 复杂度的标尺O(1)最好 对数复杂度非常好 多项式复杂度通常可以让人满意">
+  <meta name="description" content="01-D  级数 算数级数：与末项平方同阶T(n)=1+2+…+n=O(n²) 幂方级数：与幂次高出一阶T₂(n)=1²+2²+…+n²=O(n³) 几何级数(a&amp;gt;1)：与末项同阶Ta(n) = aº+a¹+a²+…+aⁿ=O(aⁿ) 收敛级数递减总和不会超过某个上界=O(1)循环vs.级数取非极端元素(例子)起泡排序   不变性，经过k轮扫描交换后，最大的k个元素必然就位 单调性，经过k">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法复杂度标尺">
-<meta property="og:url" content="http://yoursite.com/2020/08/08/算法复杂度标尺/index.html">
+<meta property="og:title" content="算法分析">
+<meta property="og:url" content="http://yoursite.com/2020/08/09/算法分析/index.html">
 <meta property="og:site_name" content="LzBlog">
-<meta property="og:description" content="01-b-1到01-c-3  定义T(n)算法评价在所有规模为n的问题实例中，将他们的计算成本整体比较，取最大值。亦即，在规模同为n的所有势力中，只关注最坏(成本最高)者。 图灵机了解了图灵机工作方式 RAM通过图灵机和RAM讲计算成本转化为了计算行数(次数)  大O记号悲观角度，最大复杂度 其他记号最小复杂度、居中复杂度 复杂度的标尺O(1)最好 对数复杂度非常好 多项式复杂度通常可以让人满意">
+<meta property="og:description" content="01-D  级数 算数级数：与末项平方同阶T(n)=1+2+…+n=O(n²) 幂方级数：与幂次高出一阶T₂(n)=1²+2²+…+n²=O(n³) 几何级数(a&amp;gt;1)：与末项同阶Ta(n) = aº+a¹+a²+…+aⁿ=O(aⁿ) 收敛级数递减总和不会超过某个上界=O(1)循环vs.级数取非极端元素(例子)起泡排序   不变性，经过k轮扫描交换后，最大的k个元素必然就位 单调性，经过k">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/images/bigo.png">
-<meta property="og:image" content="http://yoursite.com/images/bigo1fuzadu.png">
-<meta property="og:image" content="http://yoursite.com/images/Ologn.png">
-<meta property="og:image" content="http://yoursite.com/images/duoxiangshifuzadu.png">
-<meta property="og:image" content="http://yoursite.com/images/zhishufuzadu.png">
-<meta property="og:image" content="http://yoursite.com/images/zengzhangsudu.png">
-<meta property="og:updated_time" content="2020-08-08T02:20:56.164Z">
+<meta property="og:image" content="http://yoursite.com/iamges/jishu1.png">
+<meta property="og:image" content="http://yoursite.com/iamges/xunhuanjishu1.png">
+<meta property="og:image" content="http://yoursite.com/iamges/xunhuanjishu2.png">
+<meta property="og:image" content="http://yoursite.com/iamges/feijiduan.png">
+<meta property="og:image" content="http://yoursite.com/iamges/qipaopaixu.png">
+<meta property="og:updated_time" content="2020-08-09T06:59:26.962Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法复杂度标尺">
-<meta name="twitter:description" content="01-b-1到01-c-3  定义T(n)算法评价在所有规模为n的问题实例中，将他们的计算成本整体比较，取最大值。亦即，在规模同为n的所有势力中，只关注最坏(成本最高)者。 图灵机了解了图灵机工作方式 RAM通过图灵机和RAM讲计算成本转化为了计算行数(次数)  大O记号悲观角度，最大复杂度 其他记号最小复杂度、居中复杂度 复杂度的标尺O(1)最好 对数复杂度非常好 多项式复杂度通常可以让人满意">
-<meta name="twitter:image" content="http://yoursite.com/images/bigo.png">
+<meta name="twitter:title" content="算法分析">
+<meta name="twitter:description" content="01-D  级数 算数级数：与末项平方同阶T(n)=1+2+…+n=O(n²) 幂方级数：与幂次高出一阶T₂(n)=1²+2²+…+n²=O(n³) 几何级数(a&amp;gt;1)：与末项同阶Ta(n) = aº+a¹+a²+…+aⁿ=O(aⁿ) 收敛级数递减总和不会超过某个上界=O(1)循环vs.级数取非极端元素(例子)起泡排序   不变性，经过k轮扫描交换后，最大的k个元素必然就位 单调性，经过k">
+<meta name="twitter:image" content="http://yoursite.com/iamges/jishu1.png">
 
   
 
@@ -101,20 +100,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义T-n-算法评价"><span class="toc-text">定义T(n)算法评价</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图灵机"><span class="toc-text">图灵机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAM"><span class="toc-text">RAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大O记号"><span class="toc-text">大O记号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#其他记号"><span class="toc-text">其他记号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度的标尺"><span class="toc-text">复杂度的标尺</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#O-1"><span class="toc-text">O(1)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#对数复杂度"><span class="toc-text">对数复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多项式复杂度"><span class="toc-text">多项式复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#指数复杂度"><span class="toc-text">指数复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#总标尺图"><span class="toc-text">总标尺图</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#级数"><span class="toc-text">级数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#循环vs-级数"><span class="toc-text">循环vs.级数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#取非极端元素-例子"><span class="toc-text">取非极端元素(例子)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#起泡排序"><span class="toc-text">起泡排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#封底估算-脑补估算"><span class="toc-text">封底估算(脑补估算)</span></a></li></ol></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-算法复杂度标尺" class="article article-type-post" itemprop="blogPost">
+   <article id="post-算法分析" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">算法复杂度标尺</h1>
+    <h1 class="post-title">算法分析</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2020.08.08</span>
+        <span>2020.08.09</span>
       </span>
 
       
@@ -130,7 +129,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://lilittlexia.github.io//2020/08/08/算法复杂度标尺/#disqus_thread"></a>
+          <a href="https://lilittlexia.github.io//2020/08/09/算法分析/#disqus_thread"></a>
         </span>
       
 
@@ -148,20 +147,25 @@
   <div class="article-content">
     
       <blockquote>
-<p>01-b-1到01-c-3</p>
+<p>01-D</p>
 </blockquote>
-<h3 id="定义T-n-算法评价"><a href="#定义T-n-算法评价" class="headerlink" title="定义T(n)算法评价"></a>定义T(n)算法评价</h3><p>在所有规模为n的问题实例中，将他们的计算成本整体比较，取最大值。亦即，在规模同为n的所有势力中，只关注最坏(成本最高)者。</p>
-<h3 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h3><p>了解了图灵机工作方式</p>
-<h3 id="RAM"><a href="#RAM" class="headerlink" title="RAM"></a>RAM</h3><p>通过图灵机和RAM讲计算成本转化为了计算行数(次数)</p>
-<hr>
-<h3 id="大O记号"><a href="#大O记号" class="headerlink" title="大O记号"></a>大O记号</h3><p>悲观角度，最大复杂度<br><img src="/images/bigo.png" alt="大O记号"></p>
-<h4 id="其他记号"><a href="#其他记号" class="headerlink" title="其他记号"></a>其他记号</h4><p>最小复杂度、居中复杂度</p>
-<h4 id="复杂度的标尺"><a href="#复杂度的标尺" class="headerlink" title="复杂度的标尺"></a>复杂度的标尺</h4><h5 id="O-1"><a href="#O-1" class="headerlink" title="O(1)"></a>O(1)</h5><p>最好<br><img src="/images/bigo1fuzadu.png" alt="o(1)"></p>
-<h5 id="对数复杂度"><a href="#对数复杂度" class="headerlink" title="对数复杂度"></a>对数复杂度</h5><p>非常好<br><img src="/images/Ologn.png" alt="o(1)"></p>
-<h5 id="多项式复杂度"><a href="#多项式复杂度" class="headerlink" title="多项式复杂度"></a>多项式复杂度</h5><p>通常可以让人满意<br><img src="/images/duoxiangshifuzadu.png" alt="o(1)"></p>
-<h5 id="指数复杂度"><a href="#指数复杂度" class="headerlink" title="指数复杂度"></a>指数复杂度</h5><p>通常被认为不可忍受的<br><img src="/images/zhishufuzadu.png" alt="o(1)"></p>
-<h5 id="总标尺图"><a href="#总标尺图" class="headerlink" title="总标尺图"></a>总标尺图</h5><p><img src="/images/zengzhangsudu.png" alt="o(1)"></p>
-<hr>
+<h4 id="级数"><a href="#级数" class="headerlink" title="级数"></a>级数</h4><ul>
+<li>算数级数：与末项平方同阶<br>T(n)=1+2+…+n=O(n²)</li>
+<li>幂方级数：与幂次高出一阶<br>T₂(n)=1²+2²+…+n²=O(n³)</li>
+<li>几何级数(a&gt;1)：与末项同阶<br>Ta(n) = aº+a¹+a²+…+aⁿ=O(aⁿ)</li>
+<li>收敛级数<br>递减总和不会超过某个上界=O(1)<br><img src="/iamges/jishu1.png" alt="级数附加"><h5 id="循环vs-级数"><a href="#循环vs-级数" class="headerlink" title="循环vs.级数"></a>循环vs.级数</h5><img src="/iamges/xunhuanjishu1.png" alt="循环级数"><br><img src="/iamges/xunhuanjishu2.png" alt="循环级数"><h5 id="取非极端元素-例子"><a href="#取非极端元素-例子" class="headerlink" title="取非极端元素(例子)"></a>取非极端元素(例子)</h5><img src="/iamges/feijiduan.png" alt="取非极端元素"><h5 id="起泡排序"><a href="#起泡排序" class="headerlink" title="起泡排序"></a>起泡排序</h5><img src="/iamges/qipaopaixu.png" alt="起泡排序"></li>
+</ul>
+<ol>
+<li><strong>不变性</strong>，经过k轮扫描交换后，最大的k个元素必然就位</li>
+<li><strong>单调性</strong>，经过k轮扫描交换后，问题规模缩减至n-k</li>
+<li><strong>正确性</strong>，经过之多n趟扫描后，算法必然终止，且能给出正确答案<h5 id="封底估算-脑补估算"><a href="#封底估算-脑补估算" class="headerlink" title="封底估算(脑补估算)"></a>封底估算(脑补估算)</h5>概念</li>
+</ol>
+<ul>
+<li>1天=24<em>60</em>60=25<em>4000=10^5(10^5=100000，24看成25，60</em>60看成4000)</li>
+<li>1生=100年=100<em>365=3</em>10^4=3*10^9秒</li>
+<li>三生三世=300年=10^10</li>
+<li>宇宙大爆炸至今=10^21</li>
+</ul>
 
     
   </div>
@@ -177,10 +181,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/08/07/计算01A123/">
+    <a class="show pull-left" href="/2020/08/08/算法复杂度标尺/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/08/09/算法分析/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -305,7 +309,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2020/08/08/算法复杂度标尺/';
+    var disqus_url = 'http://yoursite.com/2020/08/09/算法分析/';
     
     (function(){
       var dsq = document.createElement('script');
